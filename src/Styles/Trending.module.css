@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 1rem;
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-family: var(--font);
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 300;
+}
