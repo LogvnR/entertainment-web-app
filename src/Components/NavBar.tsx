@@ -9,10 +9,6 @@ import pfp from '../assets/image-avatar.png';
 import classes from '../Styles/NavBar.module.css';
 
 const NavBar: FC = () => {
-  // const [home, setHome] = useState(true);
-  // const [movies, setMovies] = useState(false);
-  // const [tvSeries, setTvSeries] = useState(false);
-  // const [bookmark, setBookmark] = useState(false);
   const [isSelected, setIsSelected] = useState('home');
 
   const homeHandler = () => {

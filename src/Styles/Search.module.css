@@ -1,0 +1,35 @@
+.container {
+  width: 90%;
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.icon {
+  box-sizing: border-box;
+}
+
+.search {
+  width: 85%;
+  box-sizing: border-box;
+}
+
+.search input {
+  width: 100%;
+  padding: 0.2rem 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  font: var(--font);
+  font-size: var(--textMd);
+  color: var(--white);
+  outline: none;
+  font-weight: 300;
+  caret-color: var(--red);
+}
+
+.search input:focus {
+  border-bottom: 1px solid var(--greyBlue);
+}

@@ -7,4 +7,5 @@
   --semiDarkBlue: hsl(223, 36%, 14%);
   --white: hsl(0, 0%, 100%);
   --font: 'Outfit', sans-serif;
+  --textMd: clamp(14px, 5vw, 24px);
 }
