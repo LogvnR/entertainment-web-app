@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+  height: 56px;
+  background-color: var(--semiDarkBlue);
+  box-sizing: border-box;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon {
+  color: var(--greyBlue);
+  transition: color 0.15s ease-in-out;
+}
+
+.profile {
+  width: 24px;
+  border: 1px solid white;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.selected {
+  color: var(--white);
+  transition: color 0.15s ease-in-out;
+}
