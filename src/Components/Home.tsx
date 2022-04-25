@@ -6,10 +6,10 @@ import Search from './UI/Search';
 
 const Home: FC = () => {
   return (
-    <div className={classes.container}>
+    <section className={classes.container}>
       <Search placeholder="movies and TV series" />
       <Trending />
-    </div>
+    </section>
   );
 };
 

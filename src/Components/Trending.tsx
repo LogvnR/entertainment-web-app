@@ -1,13 +1,13 @@
 import { FC } from 'react';
 
 import classes from '../Styles/Trending.module.css';
-import TrendingCard from './UI/TrendingCard';
+import Carousel from './UI/Carousel';
 
 const Trending: FC = () => {
   return (
     <div className={classes.container}>
       <h2 className={classes.title}>Trending</h2>
-      <TrendingCard />
+      <Carousel />
     </div>
   );
 };

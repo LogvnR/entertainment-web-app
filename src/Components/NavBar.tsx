@@ -28,7 +28,7 @@ const NavBar: FC = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <nav className={classes.container}>
       <Logo />
       <div className={classes.options}>
         <Home
@@ -53,7 +53,7 @@ const NavBar: FC = () => {
         />
       </div>
       <img className={classes.profile} src={pfp} alt="" />
-    </div>
+    </nav>
   );
 };
 
