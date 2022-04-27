@@ -15,18 +15,18 @@ const Home: FC = () => {
     for (let data of dataBase) {
       if (data.isTrending) {
         setTrending(data);
+      } else {
+        setRecommended(data);
       }
-      // else {
-      //   setRecommended(data);
-      // }
     }
+    console.log('JSON data call completed');
   }, [setTrending, setRecommended]);
 
   return (
     <section className={classes.container}>
       <Search placeholder="movies and TV series" />
       <Trending />
-      {/* <Recommended /> */}
+      <Recommended />
     </section>
   );
 };
