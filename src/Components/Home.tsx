@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import useStore from '../Helpers/store';
 
 import dataBase from '../data.json';
@@ -7,8 +7,10 @@ import classes from '../Styles/Home.module.css';
 import Recommended from './Recommended';
 import Trending from './Trending';
 import Search from './UI/Search';
+import SearchResults from './SearchResults';
 
 const Home: FC = () => {
+  const [isSearching, setIsSearching] = useState<boolean>(true);
   const { setTrending, setRecommended } = useStore();
 
   useEffect(() => {
@@ -24,9 +26,14 @@ const Home: FC = () => {
 
   return (
     <section className={classes.container}>
-      <Search placeholder="movies and TV series" />
-      <Trending />
-      <Recommended />
+      <Search placeholder="movies and TV series" isSearching={setIsSearching} />
+      {!isSearching && (
+        <>
+          <Trending />
+          <Recommended />
+        </>
+      )}
+      {isSearching && <SearchResults />}
     </section>
   );
 };
