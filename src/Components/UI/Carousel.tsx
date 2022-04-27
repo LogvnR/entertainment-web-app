@@ -1,14 +1,14 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import useStore from '../../Helpers/store';
 
 import classes from '../../Styles/Carousel.module.css';
-import content from '../../data.json';
 import TrendingCard from './TrendingCard';
 
 const Carousel = () => {
   const [width, setWidth] = useState<number | undefined>(0);
-  const [trending, setTrending] = useState<any>([]);
   const carousel = useRef<HTMLDivElement>(null);
+  const { trending } = useStore();
 
   useEffect(() => {
     setWidth(
@@ -16,16 +16,6 @@ const Carousel = () => {
         Number(carousel?.current?.offsetWidth) +
         10
     );
-  }, []);
-
-  useEffect(() => {
-    let trendingContent = [];
-    for (let i of content) {
-      if (i.isTrending === true) {
-        trendingContent.push(i);
-      }
-    }
-    setTrending(trendingContent);
   }, []);
 
   return (

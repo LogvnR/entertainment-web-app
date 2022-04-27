@@ -5,6 +5,7 @@ interface AppStore {
   trending: Content[];
   recommended: Content[];
   setTrending: (trend: Content) => void;
+  setRecommended: (recommend: Content) => void;
 }
 
 const useStore = create<AppStore>((set) => ({
@@ -13,7 +14,14 @@ const useStore = create<AppStore>((set) => ({
   setTrending: (trend: Content) => {
     set((state) => {
       return {
-        trending: { ...state.trending, trend },
+        trending: [...state.trending, trend],
+      };
+    });
+  },
+  setRecommended: (recommendation: Content) => {
+    set((state) => {
+      return {
+        recommended: [...state.recommended, recommendation],
       };
     });
   },

@@ -1,17 +1,19 @@
 export type Content = {
   title: string;
   thumbnail: {
-    [key: string]: item;
+    trending?: {
+      small: string;
+      large: string;
+    };
+    regular: {
+      small: string;
+      medium: string;
+      large: string;
+    };
   };
   year: number;
   category: string;
   rating: string;
   isBookmarked: boolean;
   isTrending: boolean;
-};
-
-type item = {
-  small: string;
-  medium?: string;
-  large: string;
 };
