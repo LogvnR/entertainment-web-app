@@ -1,29 +1,32 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import useStore from '../Helpers/store';
 
-import dataBase from '../data.json';
+import { Content } from '../Helpers/types';
 
 import classes from '../Styles/SearchResults.module.css';
 import ContentCard from './UI/ContentCard';
 
 const SearchResults: FC = () => {
-  const { search, searchResults, setSearchResults } = useStore();
+  const [searchCount, setSearchCount] = useState<number>(0);
+  const { search, trending, recommended } = useStore();
+  const fullList = trending.concat(recommended);
+  const searchedList = fullList.filter((searched: Content) => {
+    if (searched.title.toLowerCase().includes(search.toLowerCase())) {
+      return searched;
+    }
+  });
 
   useEffect(() => {
-    for (let data of dataBase) {
-      if (search && data.title == search) {
-        setSearchResults(data);
-      }
-    }
-  }, [search]);
+    setSearchCount(searchedList.length);
+  }, [searchedList]);
 
   return (
     <div className={classes.container}>
       <h2 className={classes.title}>
-        Found {searchResults.length} results for '{search}'
+        Found {searchCount} results for '{search}'
       </h2>
       <div className={classes.content}>
-        {searchResults.map((searched: any) => (
+        {searchedList.map((searched: Content) => (
           <ContentCard
             year={searched.year}
             title={searched.title}
