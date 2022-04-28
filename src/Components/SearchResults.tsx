@@ -8,8 +8,8 @@ import ContentCard from './UI/ContentCard';
 
 const SearchResults: FC = () => {
   const [searchCount, setSearchCount] = useState<number>(0);
-  const { search, trending, recommended } = useStore();
-  const fullList = trending.concat(recommended);
+  const { search, movies, shows } = useStore();
+  const fullList = movies.concat(shows);
   const searchedList = fullList.filter((searched: Content) => {
     if (searched.title.toLowerCase().includes(search.toLowerCase())) {
       return searched;

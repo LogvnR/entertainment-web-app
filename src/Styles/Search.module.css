@@ -28,8 +28,11 @@
   outline: none;
   font-weight: 300;
   caret-color: var(--red);
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.15s ease-in-out;
 }
 
 .search input:focus {
   border-bottom: 1px solid var(--greyBlue);
+  transition: border-bottom 0.15s ease-in-out;
 }

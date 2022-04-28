@@ -4,17 +4,21 @@ import { Content } from './types';
 interface AppStore {
   trending: Content[];
   recommended: Content[];
+  movies: Content[];
+  shows: Content[];
   search: string;
-  searchResults: Content[];
   setTrending: (trend: Content) => void;
   setRecommended: (recommend: Content) => void;
   setSearch: (search: string) => void;
-  setSearchResults: (searched: Content) => void;
+  setMovies: (movie: Content) => void;
+  setShows: (show: Content) => void;
 }
 
 const useStore = create<AppStore>((set) => ({
   trending: [],
   recommended: [],
+  movies: [],
+  shows: [],
   search: '',
   searchResults: [],
   setTrending: (trend: Content) => {
@@ -31,14 +35,22 @@ const useStore = create<AppStore>((set) => ({
       };
     });
   },
-  setSearch: (search: string) => set({ search }),
-  setSearchResults: (searched: Content) => {
+
+  setMovies: (movie: Content) => {
     set((state) => {
       return {
-        searchResults: [...state.searchResults, searched],
+        movies: [...state.movies, movie],
       };
     });
   },
+  setShows: (show: Content) => {
+    set((state) => {
+      return {
+        shows: [...state.shows, show],
+      };
+    });
+  },
+  setSearch: (search: string) => set({ search }),
 }));
 
 export default useStore;
