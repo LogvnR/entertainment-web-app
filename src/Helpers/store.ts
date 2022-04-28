@@ -35,7 +35,6 @@ const useStore = create<AppStore>((set) => ({
       };
     });
   },
-
   setMovies: (movie: Content) => {
     set((state) => {
       return {

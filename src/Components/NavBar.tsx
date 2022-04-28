@@ -1,4 +1,6 @@
 import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { ReactComponent as Logo } from '../assets/logo.svg';
 import { ReactComponent as Home } from '../assets/icon-nav-home.svg';
 import { ReactComponent as Movies } from '../assets/icon-nav-movies.svg';
@@ -12,13 +14,16 @@ import classes from '../Styles/NavBar.module.css';
 const NavBar: FC = () => {
   const [isSelected, setIsSelected] = useState('home');
   const { trending, recommended, search } = useStore();
+  const navigate = useNavigate();
 
   const homeHandler = () => {
     setIsSelected('home');
+    navigate('/');
   };
 
   const moviesHandler = () => {
     setIsSelected('movies');
+    navigate('/movies');
   };
 
   const tvHandler = () => {
