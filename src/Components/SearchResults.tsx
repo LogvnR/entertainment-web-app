@@ -6,11 +6,15 @@ import { Content } from '../Helpers/types';
 import classes from '../Styles/SearchResults.module.css';
 import ContentCard from './UI/ContentCard';
 
-const SearchResults: FC = () => {
+interface Props {
+  content: Content[];
+}
+
+const SearchResults: FC<Props> = ({ content }) => {
   const [searchCount, setSearchCount] = useState<number>(0);
-  const { search, movies, shows } = useStore();
-  const fullList = movies.concat(shows);
-  const searchedList = fullList.filter((searched: Content) => {
+  const { search } = useStore();
+
+  const searchedList = content.filter((searched: Content) => {
     if (searched.title.toLowerCase().includes(search.toLowerCase())) {
       return searched;
     }

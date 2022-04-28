@@ -28,10 +28,12 @@ const NavBar: FC = () => {
 
   const tvHandler = () => {
     setIsSelected('tvSeries');
+    navigate('/shows');
   };
 
   const bookmarkHandler = () => {
-    setIsSelected('bookmark');
+    setIsSelected('bookmarks');
+    navigate('/bookmarks');
   };
 
   const testStore = () => {
@@ -60,7 +62,7 @@ const NavBar: FC = () => {
         />
         <Bookmark
           className={
-            isSelected === 'bookmark' ? classes.selected : classes.icon
+            isSelected === 'bookmarks' ? classes.selected : classes.icon
           }
           onClick={bookmarkHandler}
         />

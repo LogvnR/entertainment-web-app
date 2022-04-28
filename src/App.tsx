@@ -8,6 +8,8 @@ import classes from './App.module.css';
 import Home from './Components/Home';
 import Movies from './Components/Movies';
 import NavBar from './Components/NavBar';
+import Shows from './Components/Shows';
+import Bookmarks from './Components/Bookmarks';
 
 const App = () => {
   const { setTrending, setRecommended, setMovies, setShows } = useStore();
@@ -35,6 +37,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/shows" element={<Shows />} />
+        <Route path="/bookmarks" element={<Bookmarks />} />
       </Routes>
     </main>
   );
