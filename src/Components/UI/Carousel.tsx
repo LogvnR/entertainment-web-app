@@ -37,6 +37,9 @@ const Carousel = () => {
             rating={trend.rating}
             category={trend.category}
             image={trend.thumbnail.trending.small}
+            thumbnail={trend.thumbnail}
+            isBookmarked={trend.isBookmarked}
+            isTrending={trend.isTrending}
             key={trend.title}
           />
         ))}

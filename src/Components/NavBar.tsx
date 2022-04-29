@@ -1,6 +1,8 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import dataBase from '../data.json';
+
 import { ReactComponent as Logo } from '../assets/logo.svg';
 import { ReactComponent as Home } from '../assets/icon-nav-home.svg';
 import { ReactComponent as Movies } from '../assets/icon-nav-movies.svg';
@@ -40,6 +42,7 @@ const NavBar: FC = () => {
     console.log(trending);
     console.log(recommended);
     console.log(search);
+    console.log(dataBase);
   };
 
   return (

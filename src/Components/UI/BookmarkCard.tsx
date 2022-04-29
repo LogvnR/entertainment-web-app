@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import useStore from '../../Helpers/store';
 import { Content } from '../../Helpers/types';
 
-import { ReactComponent as EmptyBookmarkIcon } from '../../assets/icon-bookmark-empty.svg';
 import { ReactComponent as FullBookmarkIcon } from '../../assets/icon-bookmark-full.svg';
 import { ReactComponent as MovieIcon } from '../../assets/icon-category-movie.svg';
 import { ReactComponent as TvSeriesIcon } from '../../assets/icon-category-tv.svg';
@@ -42,7 +41,14 @@ const ContentCard: FC<Props> = ({
   isTrending,
 }) => {
   const [clickedBookmarked, setClickedBookmarked] = useState(false);
-  const { setBookmarkedMovies, setBookmarkedShows } = useStore();
+  const {
+    setBookmarkedMovies,
+    setBookmarkedShows,
+    bookmarkedMovies,
+    bookmarkedShows,
+  } = useStore();
+
+  const fullBookmarks = bookmarkedMovies.concat(bookmarkedShows);
 
   const Item: Content = {
     title,
@@ -77,7 +83,7 @@ const ContentCard: FC<Props> = ({
             className={classes['bookmark-circle']}
             onClick={bookmarkHandler}
           >
-            {!clickedBookmarked ? <EmptyBookmarkIcon /> : <FullBookmarkIcon />}
+            <FullBookmarkIcon />
           </motion.div>
         </div>
 

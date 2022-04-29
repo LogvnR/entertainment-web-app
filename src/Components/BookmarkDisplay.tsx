@@ -3,20 +3,20 @@ import { FC } from 'react';
 import { Content } from '../Helpers/types';
 
 import classes from '../Styles/Display.module.css';
-import ContentCard from './UI/ContentCard';
+import BookmarkCard from './UI/BookmarkCard';
 
 interface Props {
   content: Content[];
   title: string;
 }
 
-const Display: FC<Props> = ({ content, title }) => {
+const BookmarkDisplay: FC<Props> = ({ content, title }) => {
   return (
     <div className={classes.container}>
       <h2 className={classes.title}>{title}</h2>
       <div className={classes.content}>
         {content.map((data: any) => (
-          <ContentCard
+          <BookmarkCard
             year={data.year}
             title={data.title}
             rating={data.rating}
@@ -33,4 +33,4 @@ const Display: FC<Props> = ({ content, title }) => {
   );
 };
 
-export default Display;
+export default BookmarkDisplay;

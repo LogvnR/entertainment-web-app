@@ -14,7 +14,7 @@ const Movies: FC = () => {
   return (
     <section className={classes.container}>
       <Search isSearching={setIsSearching} placeholder="movies" />
-      <Display content={movies} title="Movies" />
+      {!isSearching && <Display content={movies} title="Movies" />}
       {isSearching && <SearchResults content={movies} />}
     </section>
   );

@@ -37,6 +37,9 @@ const SearchResults: FC<Props> = ({ content }) => {
             rating={searched.rating}
             category={searched.category}
             image={searched.thumbnail.regular.small}
+            thumbnail={searched.thumbnail}
+            isBookmarked={searched.isBookmarked}
+            isTrending={searched.isTrending}
             key={searched.title}
           />
         ))}

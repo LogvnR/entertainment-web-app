@@ -1,5 +1,8 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+
+import useStore from '../../Helpers/store';
+import { Content } from '../../Helpers/types';
 
 import classes from '../../Styles/TrendingCard.module.css';
 
@@ -11,10 +14,23 @@ import { ReactComponent as TvSeriesIcon } from '../../assets/icon-category-tv.sv
 interface Props {
   className: string;
   year: number;
+  thumbnail: {
+    trending?: {
+      small: string;
+      large: string;
+    };
+    regular: {
+      small: string;
+      medium: string;
+      large: string;
+    };
+  };
   category: string;
   rating: string;
   title: string;
   image: string;
+  isBookmarked: boolean;
+  isTrending: boolean;
 }
 
 const TrendingCard: FC<Props> = ({
@@ -24,12 +40,36 @@ const TrendingCard: FC<Props> = ({
   rating,
   title,
   image,
+  thumbnail,
+  isBookmarked,
+  isTrending,
 }) => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [clickedBookmarked, setClickedBookmarked] = useState(false);
+  const { setBookmarkedMovies, setBookmarkedShows } = useStore();
+
+  const Item: Content = {
+    title,
+    thumbnail,
+    year,
+    category,
+    rating,
+    isBookmarked: true,
+    isTrending,
+  };
 
   const bookmarkHandler = () => {
-    setIsBookmarked(!isBookmarked);
+    setClickedBookmarked(!clickedBookmarked);
   };
+
+  useEffect(() => {
+    if (clickedBookmarked && category === 'Movie') {
+      setBookmarkedMovies(Item);
+    }
+
+    if (clickedBookmarked && category === 'TV Series') {
+      setBookmarkedShows(Item);
+    }
+  }, [clickedBookmarked]);
 
   return (
     <motion.div className={`${classes.container} ${className}`}>
@@ -40,7 +80,7 @@ const TrendingCard: FC<Props> = ({
             className={classes['bookmark-circle']}
             onClick={bookmarkHandler}
           >
-            {!isBookmarked ? <EmptyBookmarkIcon /> : <FullBookmarkIcon />}
+            {!clickedBookmarked ? <EmptyBookmarkIcon /> : <FullBookmarkIcon />}
           </motion.div>
         </div>
         <div className={classes['details-container']}>

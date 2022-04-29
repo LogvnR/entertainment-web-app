@@ -6,12 +6,16 @@ interface AppStore {
   recommended: Content[];
   movies: Content[];
   shows: Content[];
+  bookmarkedMovies: Content[];
+  bookmarkedShows: Content[];
   search: string;
   setTrending: (trend: Content) => void;
   setRecommended: (recommend: Content) => void;
   setSearch: (search: string) => void;
   setMovies: (movie: Content) => void;
   setShows: (show: Content) => void;
+  setBookmarkedMovies: (markedMovie: Content) => void;
+  setBookmarkedShows: (markedShow: Content) => void;
 }
 
 const useStore = create<AppStore>((set) => ({
@@ -21,6 +25,8 @@ const useStore = create<AppStore>((set) => ({
   shows: [],
   search: '',
   searchResults: [],
+  bookmarkedMovies: [],
+  bookmarkedShows: [],
   setTrending: (trend: Content) => {
     set((state) => {
       return {
@@ -50,6 +56,20 @@ const useStore = create<AppStore>((set) => ({
     });
   },
   setSearch: (search: string) => set({ search }),
+  setBookmarkedMovies: (markedMovie: Content) => {
+    set((state) => {
+      return {
+        bookmarkedMovies: [...state.bookmarkedMovies, markedMovie],
+      };
+    });
+  },
+  setBookmarkedShows: (markedShow: Content) => {
+    set((state) => {
+      return {
+        bookmarkedShows: [...state.bookmarkedShows, markedShow],
+      };
+    });
+  },
 }));
 
 export default useStore;
