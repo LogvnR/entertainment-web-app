@@ -41,14 +41,7 @@ const ContentCard: FC<Props> = ({
   isTrending,
 }) => {
   const [clickedBookmarked, setClickedBookmarked] = useState(false);
-  const {
-    setBookmarkedMovies,
-    setBookmarkedShows,
-    bookmarkedMovies,
-    bookmarkedShows,
-  } = useStore();
-
-  const fullBookmarks = bookmarkedMovies.concat(bookmarkedShows);
+  const { setContent } = useStore();
 
   const Item: Content = {
     title,
@@ -66,11 +59,11 @@ const ContentCard: FC<Props> = ({
 
   useEffect(() => {
     if (clickedBookmarked && category === 'Movie') {
-      setBookmarkedMovies(Item);
+      setContent(Item, 'markedMovie');
     }
 
     if (clickedBookmarked && category === 'TV Series') {
-      setBookmarkedShows(Item);
+      setContent(Item, 'markedShow');
     }
   }, [clickedBookmarked]);
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import useStore from './Helpers/store';
 
@@ -12,24 +12,36 @@ import Shows from './Components/Shows';
 import Bookmarks from './Components/Bookmarks';
 
 const App = () => {
-  const { setTrending, setRecommended, setMovies, setShows } = useStore();
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  const { setContent, setScreenWidth } = useStore();
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWidth(window.innerWidth);
+    });
+  }, [width]);
+
+  useEffect(() => {
+    setScreenWidth(width);
+  }, [width]);
 
   useEffect(() => {
     for (let data of dataBase) {
       if (data.isTrending) {
-        setTrending(data);
+        setContent(data, 'trending');
       } else {
-        setRecommended(data);
+        setContent(data, 'recommended');
       }
 
       if (data.category === 'Movie') {
-        setMovies(data);
+        setContent(data, 'movie');
       } else {
-        setShows(data);
+        setContent(data, 'show');
       }
     }
+
     console.log('JSON data call completed');
-  }, [setTrending, setRecommended, setMovies, setShows]);
+  }, [setContent, setScreenWidth]);
 
   return (
     <main className={classes.container}>

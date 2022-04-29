@@ -15,7 +15,7 @@ import classes from '../Styles/NavBar.module.css';
 
 const NavBar: FC = () => {
   const [isSelected, setIsSelected] = useState('home');
-  const { trending, recommended, search } = useStore();
+  const { trending, recommended, search, screenWidth } = useStore();
   const navigate = useNavigate();
 
   const homeHandler = () => {
@@ -43,6 +43,7 @@ const NavBar: FC = () => {
     console.log(recommended);
     console.log(search);
     console.log(dataBase);
+    console.log(screenWidth);
   };
 
   return (

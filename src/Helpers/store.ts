@@ -9,13 +9,10 @@ interface AppStore {
   bookmarkedMovies: Content[];
   bookmarkedShows: Content[];
   search: string;
-  setTrending: (trend: Content) => void;
-  setRecommended: (recommend: Content) => void;
+  setContent: (data: Content, type: string) => void;
   setSearch: (search: string) => void;
-  setMovies: (movie: Content) => void;
-  setShows: (show: Content) => void;
-  setBookmarkedMovies: (markedMovie: Content) => void;
-  setBookmarkedShows: (markedShow: Content) => void;
+  screenWidth: number;
+  setScreenWidth: (screenWidth: number) => void;
 }
 
 const useStore = create<AppStore>((set) => ({
@@ -27,49 +24,57 @@ const useStore = create<AppStore>((set) => ({
   searchResults: [],
   bookmarkedMovies: [],
   bookmarkedShows: [],
-  setTrending: (trend: Content) => {
-    set((state) => {
-      return {
-        trending: [...state.trending, trend],
-      };
-    });
-  },
-  setRecommended: (recommendation: Content) => {
-    set((state) => {
-      return {
-        recommended: [...state.recommended, recommendation],
-      };
-    });
-  },
-  setMovies: (movie: Content) => {
-    set((state) => {
-      return {
-        movies: [...state.movies, movie],
-      };
-    });
-  },
-  setShows: (show: Content) => {
-    set((state) => {
-      return {
-        shows: [...state.shows, show],
-      };
-    });
+  setContent: (data: Content, type: string) => {
+    switch (type) {
+      case 'trending':
+        set((state) => {
+          return {
+            trending: [...state.trending, data],
+          };
+        });
+        break;
+      case 'recommended':
+        set((state) => {
+          return {
+            recommended: [...state.recommended, data],
+          };
+        });
+        break;
+      case 'movie':
+        set((state) => {
+          return {
+            movies: [...state.movies, data],
+          };
+        });
+        break;
+      case 'show':
+        set((state) => {
+          return {
+            shows: [...state.shows, data],
+          };
+        });
+        break;
+      case 'markedMovie':
+        set((state) => {
+          return {
+            bookmarkedMovies: [...state.bookmarkedMovies, data],
+          };
+        });
+        break;
+      case 'markedShow':
+        set((state) => {
+          return {
+            bookmarkedShows: [...state.bookmarkedShows, data],
+          };
+        });
+        break;
+      default:
+        return;
+    }
   },
   setSearch: (search: string) => set({ search }),
-  setBookmarkedMovies: (markedMovie: Content) => {
-    set((state) => {
-      return {
-        bookmarkedMovies: [...state.bookmarkedMovies, markedMovie],
-      };
-    });
-  },
-  setBookmarkedShows: (markedShow: Content) => {
-    set((state) => {
-      return {
-        bookmarkedShows: [...state.bookmarkedShows, markedShow],
-      };
-    });
-  },
+  screenWidth: 0,
+  setScreenWidth: (screenWidth: number) => set({ screenWidth }),
 }));
 
 export default useStore;

@@ -45,7 +45,7 @@ const TrendingCard: FC<Props> = ({
   isTrending,
 }) => {
   const [clickedBookmarked, setClickedBookmarked] = useState(false);
-  const { setBookmarkedMovies, setBookmarkedShows } = useStore();
+  const { setContent } = useStore();
 
   const Item: Content = {
     title,
@@ -63,11 +63,11 @@ const TrendingCard: FC<Props> = ({
 
   useEffect(() => {
     if (clickedBookmarked && category === 'Movie') {
-      setBookmarkedMovies(Item);
+      setContent(Item, 'markedMovie');
     }
 
     if (clickedBookmarked && category === 'TV Series') {
-      setBookmarkedShows(Item);
+      setContent(Item, 'markedShow');
     }
   }, [clickedBookmarked]);
 
