@@ -11,3 +11,15 @@
   font-size: 20px;
   font-weight: 300;
 }
+
+@media only screen and (min-width: 768px) {
+  .container {
+    padding-left: 1.7rem;
+    margin-top: 1rem;
+  }
+
+  .title {
+    font-size: 32px;
+    margin-bottom: 2rem;
+  }
+}

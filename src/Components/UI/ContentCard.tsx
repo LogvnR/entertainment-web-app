@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import useStore from '../../Helpers/store';
@@ -41,7 +41,8 @@ const ContentCard: FC<Props> = ({
   isTrending,
 }) => {
   const [clickedBookmarked, setClickedBookmarked] = useState(isBookmarked);
-  const { content, updateContent } = useStore();
+  const [thumbnailPhoto, setThumbnailPhoto] = useState(thumbnail.regular.small);
+  const { content, updateContent, screenWidth } = useStore();
 
   const addToBookmarks = () => {
     const objIndex = content.findIndex((obj) => obj.title === title);
@@ -67,6 +68,16 @@ const ContentCard: FC<Props> = ({
     }
   };
 
+  useEffect(() => {
+    if (screenWidth < 768) {
+      setThumbnailPhoto(thumbnail.regular.small);
+    } else if (screenWidth >= 768 && screenWidth < 1024) {
+      setThumbnailPhoto(thumbnail.regular.medium);
+    } else {
+      setThumbnailPhoto(thumbnail.regular.large);
+    }
+  }, [screenWidth]);
+
   return (
     <div className={classes.container}>
       <div className={classes['photo-container']}>
@@ -80,7 +91,7 @@ const ContentCard: FC<Props> = ({
           </motion.div>
         </div>
 
-        <img className={classes.image} src={image} alt="" />
+        <img className={classes.image} src={thumbnailPhoto} alt="" />
       </div>
       <div className={classes['details-container']}>
         <p className={classes.details}>

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import useStore from '../../Helpers/store';
@@ -44,7 +44,10 @@ const TrendingCard: FC<Props> = ({
   isTrending,
 }) => {
   const [clickedBookmarked, setClickedBookmarked] = useState(isBookmarked);
-  const { content, updateContent } = useStore();
+  const [thumbnailPhoto, setThumbnailPhoto] = useState(
+    thumbnail.trending?.small
+  );
+  const { content, updateContent, screenWidth } = useStore();
 
   const addToBookmarks = () => {
     const objIndex = content.findIndex((obj) => obj.title === title);
@@ -69,6 +72,14 @@ const TrendingCard: FC<Props> = ({
       addToBookmarks();
     }
   };
+
+  useEffect(() => {
+    if (screenWidth < 768) {
+      setThumbnailPhoto(thumbnail.trending?.small);
+    } else {
+      setThumbnailPhoto(thumbnail.trending?.large);
+    }
+  }, [screenWidth]);
 
   return (
     <motion.div className={`${classes.container} ${className}`}>
@@ -96,7 +107,7 @@ const TrendingCard: FC<Props> = ({
           <p className={classes.title}>{title}</p>
         </div>
       </div>
-      <img className={classes.image} src={image} alt="" />
+      <img className={classes.image} src={thumbnailPhoto} alt="" />
     </motion.div>
   );
 };

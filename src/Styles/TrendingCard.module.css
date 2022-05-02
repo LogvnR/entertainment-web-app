@@ -1,5 +1,5 @@
 .container {
-  width: 240px;
+  width: clamp(220px, 64vw, 260px);
   height: 140px;
   position: relative;
 }
@@ -80,5 +80,28 @@
     background-color: var(--white);
     color: var(--darkBlue);
     transition: all 0.15s ease-in-out;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: clamp(450px, 60vw, 490px);
+    height: 230px;
+  }
+
+  .bookmark-circle {
+    margin: 1.1rem 1.5rem;
+  }
+
+  .details-container {
+    margin-bottom: 0.8rem;
+  }
+
+  .details {
+    font-size: 15px;
+  }
+
+  .title {
+    font-size: 24px;
   }
 }

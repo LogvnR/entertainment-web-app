@@ -19,3 +19,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+@media only screen and (min-width: 768px) {
+  .container {
+    padding: 0 1.7rem;
+    margin-top: 2.5rem;
+  }
+  .title {
+    font-size: 32px;
+    margin-bottom: 2rem;
+  }
+}

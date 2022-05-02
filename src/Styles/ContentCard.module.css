@@ -1,5 +1,5 @@
 .container {
-  width: 164px;
+  width: clamp(155px, 44vw, 180px);
   height: 154px;
   margin-bottom: 1.5rem;
 }
@@ -7,7 +7,7 @@
 .photo-container {
   position: relative;
   width: inherit;
-  height: 110px;
+  height: clamp(100px, 16.5vh, 115px);
   border-radius: 0.5rem;
 }
 
@@ -79,5 +79,29 @@
     background-color: var(--white);
     color: var(--darkBlue);
     transition: all 0.15s ease-in-out;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: clamp(200px, 28.7vw, 250px);
+    height: 192px;
+    margin-bottom: 2.5rem;
+  }
+
+  .photo-container {
+    height: clamp(125px, 13.7vh, 150px);
+  }
+
+  .details-container {
+    margin-top: 0.6rem;
+  }
+
+  .details {
+    font-size: 13px;
+  }
+
+  .title {
+    font-size: 18px;
   }
 }
