@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 
 import useStore from '../Helpers/store';
+import { Content } from '../Helpers/types';
 
 import classes from '../Styles/Home.module.css';
 import Display from './Display';
@@ -10,9 +11,14 @@ import SearchResults from './SearchResults';
 
 const Home: FC = () => {
   const [isSearching, setIsSearching] = useState<boolean>(false);
-  const { movies, shows, recommended } = useStore();
+  const { content } = useStore();
 
-  const fullList = movies.concat(shows);
+  const recommended = content.filter((recommendation: Content) => {
+    if (recommendation.isTrending !== true) {
+      return recommendation;
+    }
+    return false;
+  });
 
   return (
     <section className={classes.container}>
@@ -23,7 +29,7 @@ const Home: FC = () => {
           <Display content={recommended} title="Recommended for you" />
         </>
       )}
-      {isSearching && <SearchResults content={fullList} />}
+      {isSearching && <SearchResults content={content} />}
     </section>
   );
 };

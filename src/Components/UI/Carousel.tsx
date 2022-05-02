@@ -1,14 +1,22 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, FC } from 'react';
 import { motion } from 'framer-motion';
 import useStore from '../../Helpers/store';
+import { Content } from '../../Helpers/types';
 
 import classes from '../../Styles/Carousel.module.css';
 import TrendingCard from './TrendingCard';
 
-const Carousel = () => {
+const Carousel: FC = () => {
   const [width, setWidth] = useState<number | undefined>(0);
   const carousel = useRef<HTMLDivElement>(null);
-  const { trending } = useStore();
+  const { content } = useStore();
+
+  const trending = content.filter((trend: Content) => {
+    if (trend.isTrending === true) {
+      return trend;
+    }
+    return false;
+  });
 
   useEffect(() => {
     setWidth(

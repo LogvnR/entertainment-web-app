@@ -1,8 +1,7 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import useStore from '../../Helpers/store';
-import { Content } from '../../Helpers/types';
 
 import classes from '../../Styles/TrendingCard.module.css';
 
@@ -44,32 +43,32 @@ const TrendingCard: FC<Props> = ({
   isBookmarked,
   isTrending,
 }) => {
-  const [clickedBookmarked, setClickedBookmarked] = useState(false);
-  const { setContent } = useStore();
+  const [clickedBookmarked, setClickedBookmarked] = useState(isBookmarked);
+  const { content, updateContent } = useStore();
 
-  const Item: Content = {
-    title,
-    thumbnail,
-    year,
-    category,
-    rating,
-    isBookmarked: true,
-    isTrending,
+  const addToBookmarks = () => {
+    const objIndex = content.findIndex((obj) => obj.title === title);
+    console.log(content[objIndex]);
+    content[objIndex].isBookmarked = true;
+    updateContent(content);
+  };
+
+  const removeFromBookmarks = () => {
+    const objIndex = content.findIndex((obj) => obj.title === title);
+    console.log(content[objIndex]);
+    content[objIndex].isBookmarked = false;
+    updateContent(content);
   };
 
   const bookmarkHandler = () => {
-    setClickedBookmarked(!clickedBookmarked);
+    if (clickedBookmarked) {
+      setClickedBookmarked(false);
+      removeFromBookmarks();
+    } else {
+      setClickedBookmarked(true);
+      addToBookmarks();
+    }
   };
-
-  useEffect(() => {
-    if (clickedBookmarked && category === 'Movie') {
-      setContent(Item, 'markedMovie');
-    }
-
-    if (clickedBookmarked && category === 'TV Series') {
-      setContent(Item, 'markedShow');
-    }
-  }, [clickedBookmarked]);
 
   return (
     <motion.div className={`${classes.container} ${className}`}>

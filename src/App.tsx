@@ -13,7 +13,7 @@ import Bookmarks from './Components/Bookmarks';
 
 const App = () => {
   const [width, setWidth] = useState<number>(window.innerWidth);
-  const { setContent, setScreenWidth } = useStore();
+  const { setScreenWidth, setContent } = useStore();
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -23,25 +23,15 @@ const App = () => {
 
   useEffect(() => {
     setScreenWidth(width);
-  }, [width]);
+  }, [width, setScreenWidth]);
 
   useEffect(() => {
     for (let data of dataBase) {
-      if (data.isTrending) {
-        setContent(data, 'trending');
-      } else {
-        setContent(data, 'recommended');
-      }
-
-      if (data.category === 'Movie') {
-        setContent(data, 'movie');
-      } else {
-        setContent(data, 'show');
-      }
+      setContent(data);
     }
 
-    console.log('JSON data call completed');
-  }, [setContent, setScreenWidth]);
+    console.log('New JSON uploaded');
+  }, [setContent]);
 
   return (
     <main className={classes.container}>

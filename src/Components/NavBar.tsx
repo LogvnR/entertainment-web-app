@@ -1,8 +1,6 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import dataBase from '../data.json';
-
 import { ReactComponent as Logo } from '../assets/logo.svg';
 import { ReactComponent as Home } from '../assets/icon-nav-home.svg';
 import { ReactComponent as Movies } from '../assets/icon-nav-movies.svg';
@@ -15,7 +13,7 @@ import classes from '../Styles/NavBar.module.css';
 
 const NavBar: FC = () => {
   const [isSelected, setIsSelected] = useState('home');
-  const { trending, recommended, search, screenWidth } = useStore();
+  const { screenWidth, content } = useStore();
   const navigate = useNavigate();
 
   const homeHandler = () => {
@@ -39,16 +37,17 @@ const NavBar: FC = () => {
   };
 
   const testStore = () => {
-    console.log(trending);
-    console.log(recommended);
-    console.log(search);
-    console.log(dataBase);
+    console.log(content);
     console.log(screenWidth);
+  };
+
+  const testUpdate = () => {
+    content[0].isBookmarked = true;
   };
 
   return (
     <nav className={classes.container}>
-      <Logo />
+      <Logo onClick={testUpdate} />
       <div className={classes.options}>
         <Home
           className={isSelected === 'home' ? classes.selected : classes.icon}

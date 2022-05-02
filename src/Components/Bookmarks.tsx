@@ -1,15 +1,33 @@
 import { FC, useState } from 'react';
 import useStore from '../Helpers/store';
+import { Content } from '../Helpers/types';
 
 import Search from './UI/Search';
 import SearchResults from './SearchResults';
 
 import classes from '../Styles/Bookmarks.module.css';
-import BookmarkDisplay from './BookmarkDisplay';
+import Display from './Display';
 
 const Bookmarks: FC = () => {
   const [isSearching, setIsSearching] = useState<boolean>(false);
-  const { bookmarkedMovies, bookmarkedShows } = useStore();
+  const { content } = useStore();
+
+  const bookmarkedMovies = content.filter((markedMovie: Content) => {
+    if (markedMovie.category === 'Movie' && markedMovie.isBookmarked === true) {
+      return markedMovie;
+    }
+    return false;
+  });
+
+  const bookmarkedShows = content.filter((markedShow: Content) => {
+    if (
+      markedShow.category === 'TV Series' &&
+      markedShow.isBookmarked === true
+    ) {
+      return markedShow;
+    }
+    return false;
+  });
 
   const fullBookmarks = bookmarkedMovies.concat(bookmarkedShows);
 
@@ -18,11 +36,8 @@ const Bookmarks: FC = () => {
       <Search isSearching={setIsSearching} placeholder="bookmarks" />
       {!isSearching && (
         <>
-          <BookmarkDisplay
-            content={bookmarkedMovies}
-            title="Bookmarked Movies"
-          />
-          <BookmarkDisplay content={bookmarkedShows} title="Bookmarked Shows" />
+          <Display content={bookmarkedMovies} title="Bookmarked Movies" />
+          <Display content={bookmarkedShows} title="Bookmarked Shows" />
         </>
       )}
       {isSearching && <SearchResults content={fullBookmarks} />}

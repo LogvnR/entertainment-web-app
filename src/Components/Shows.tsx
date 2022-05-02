@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import useStore from '../Helpers/store';
+import { Content } from '../Helpers/types';
 
 import Search from './UI/Search';
 import SearchResults from './SearchResults';
@@ -9,7 +10,14 @@ import Display from './Display';
 
 const Shows: FC = () => {
   const [isSearching, setIsSearching] = useState<boolean>(false);
-  const { shows } = useStore();
+  const { content } = useStore();
+
+  const shows = content.filter((show: Content) => {
+    if (show.category === 'TV Series') {
+      return show;
+    }
+    return false;
+  });
 
   return (
     <section className={classes.container}>
