@@ -27,9 +27,7 @@ interface Props {
   category: string;
   rating: string;
   title: string;
-  image: string;
   isBookmarked: boolean;
-  isTrending: boolean;
 }
 
 const TrendingCard: FC<Props> = ({
@@ -38,10 +36,8 @@ const TrendingCard: FC<Props> = ({
   category,
   rating,
   title,
-  image,
   thumbnail,
   isBookmarked,
-  isTrending,
 }) => {
   const [clickedBookmarked, setClickedBookmarked] = useState(isBookmarked);
   const [thumbnailPhoto, setThumbnailPhoto] = useState(
@@ -49,28 +45,19 @@ const TrendingCard: FC<Props> = ({
   );
   const { content, updateContent, screenWidth } = useStore();
 
-  const addToBookmarks = () => {
+  const updateBookmarks = () => {
     const objIndex = content.findIndex((obj) => obj.title === title);
-    console.log(content[objIndex]);
-    content[objIndex].isBookmarked = true;
-    updateContent(content);
-  };
-
-  const removeFromBookmarks = () => {
-    const objIndex = content.findIndex((obj) => obj.title === title);
-    console.log(content[objIndex]);
-    content[objIndex].isBookmarked = false;
+    if (clickedBookmarked) {
+      content[objIndex].isBookmarked = false;
+    } else {
+      content[objIndex].isBookmarked = true;
+    }
     updateContent(content);
   };
 
   const bookmarkHandler = () => {
-    if (clickedBookmarked) {
-      setClickedBookmarked(false);
-      removeFromBookmarks();
-    } else {
-      setClickedBookmarked(true);
-      addToBookmarks();
-    }
+    setClickedBookmarked(!clickedBookmarked);
+    updateBookmarks();
   };
 
   useEffect(() => {
@@ -79,7 +66,7 @@ const TrendingCard: FC<Props> = ({
     } else {
       setThumbnailPhoto(thumbnail.trending?.large);
     }
-  }, [screenWidth]);
+  }, [screenWidth, thumbnail.trending?.small, thumbnail.trending?.large]);
 
   return (
     <motion.div className={`${classes.container} ${className}`}>

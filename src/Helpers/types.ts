@@ -1,3 +1,4 @@
+// ==== This is a template that is used to mimic the structure of the incoming data from 'data.json'
 export type Content = {
   title: string;
   thumbnail: {

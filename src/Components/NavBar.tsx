@@ -7,13 +7,11 @@ import { ReactComponent as Movies } from '../assets/icon-nav-movies.svg';
 import { ReactComponent as TvSeries } from '../assets/icon-nav-tv-series.svg';
 import { ReactComponent as Bookmark } from '../assets/icon-nav-bookmark.svg';
 import pfp from '../assets/image-avatar.png';
-import useStore from '../Helpers/store';
 
 import classes from '../Styles/NavBar.module.css';
 
 const NavBar: FC = () => {
   const [isSelected, setIsSelected] = useState('home');
-  const { screenWidth, content } = useStore();
   const navigate = useNavigate();
 
   const homeHandler = () => {
@@ -36,18 +34,9 @@ const NavBar: FC = () => {
     navigate('/bookmarks');
   };
 
-  const testStore = () => {
-    console.log(content);
-    console.log(screenWidth);
-  };
-
-  const testUpdate = () => {
-    content[0].isBookmarked = true;
-  };
-
   return (
     <nav className={classes.container}>
-      <Logo onClick={testUpdate} />
+      <Logo />
       <div className={classes.options}>
         <Home
           className={isSelected === 'home' ? classes.selected : classes.icon}
@@ -70,7 +59,7 @@ const NavBar: FC = () => {
           onClick={bookmarkHandler}
         />
       </div>
-      <img onClick={testStore} className={classes.profile} src={pfp} alt="" />
+      <img className={classes.profile} src={pfp} alt="" />
     </nav>
   );
 };

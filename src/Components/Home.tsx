@@ -22,7 +22,7 @@ const Home: FC = () => {
 
   return (
     <section className={classes.container}>
-      <Search placeholder="movies and TV series" isSearching={setIsSearching} />
+      <Search placeholder="movies or TV series" isSearching={setIsSearching} />
       {!isSearching && (
         <>
           <Trending />

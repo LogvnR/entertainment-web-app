@@ -21,10 +21,8 @@ const Display: FC<Props> = ({ content, title }) => {
             title={data.title}
             rating={data.rating}
             category={data.category}
-            image={data.thumbnail.regular.small}
             thumbnail={data.thumbnail}
             isBookmarked={data.isBookmarked}
-            isTrending={data.isTrending}
             key={data.title}
           />
         ))}

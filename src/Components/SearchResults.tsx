@@ -18,6 +18,7 @@ const SearchResults: FC<Props> = ({ content }) => {
     if (searched.title.toLowerCase().includes(search.toLowerCase())) {
       return searched;
     }
+    return false;
   });
 
   useEffect(() => {
@@ -36,10 +37,8 @@ const SearchResults: FC<Props> = ({ content }) => {
             title={searched.title}
             rating={searched.rating}
             category={searched.category}
-            image={searched.thumbnail.regular.small}
             thumbnail={searched.thumbnail}
             isBookmarked={searched.isBookmarked}
-            isTrending={searched.isTrending}
             key={searched.title}
           />
         ))}

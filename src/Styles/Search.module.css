@@ -43,5 +43,6 @@
     padding: 0 1.5rem;
     justify-content: flex-start;
     gap: 0.8rem;
+    margin: 1rem 0;
   }
 }

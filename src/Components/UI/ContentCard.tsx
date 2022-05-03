@@ -25,9 +25,7 @@ interface Props {
   category: string;
   rating: string;
   title: string;
-  image: string;
   isBookmarked: boolean;
-  isTrending: boolean;
 }
 
 const ContentCard: FC<Props> = ({
@@ -35,37 +33,26 @@ const ContentCard: FC<Props> = ({
   category,
   rating,
   title,
-  image,
   thumbnail,
   isBookmarked,
-  isTrending,
 }) => {
   const [clickedBookmarked, setClickedBookmarked] = useState(isBookmarked);
   const [thumbnailPhoto, setThumbnailPhoto] = useState(thumbnail.regular.small);
   const { content, updateContent, screenWidth } = useStore();
 
-  const addToBookmarks = () => {
+  const updateBookmarks = () => {
     const objIndex = content.findIndex((obj) => obj.title === title);
-    console.log(content[objIndex]);
-    content[objIndex].isBookmarked = true;
-    updateContent(content);
-  };
-
-  const removeFromBookmarks = () => {
-    const objIndex = content.findIndex((obj) => obj.title === title);
-    console.log(content[objIndex]);
-    content[objIndex].isBookmarked = false;
+    if (clickedBookmarked) {
+      content[objIndex].isBookmarked = false;
+    } else {
+      content[objIndex].isBookmarked = true;
+    }
     updateContent(content);
   };
 
   const bookmarkHandler = () => {
-    if (clickedBookmarked) {
-      setClickedBookmarked(false);
-      removeFromBookmarks();
-    } else {
-      setClickedBookmarked(true);
-      addToBookmarks();
-    }
+    setClickedBookmarked(!clickedBookmarked);
+    updateBookmarks();
   };
 
   useEffect(() => {
@@ -76,7 +63,12 @@ const ContentCard: FC<Props> = ({
     } else {
       setThumbnailPhoto(thumbnail.regular.large);
     }
-  }, [screenWidth]);
+  }, [
+    screenWidth,
+    thumbnail.regular.small,
+    thumbnail.regular.medium,
+    thumbnail.regular.large,
+  ]);
 
   return (
     <div className={classes.container}>
