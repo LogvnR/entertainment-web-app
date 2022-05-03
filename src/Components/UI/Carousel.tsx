@@ -21,8 +21,7 @@ const Carousel: FC = () => {
   useEffect(() => {
     setWidth(
       Number(carousel?.current?.scrollWidth) -
-        Number(carousel?.current?.offsetWidth) +
-        10
+        Number(carousel?.current?.offsetWidth)
     );
   }, []);
 
