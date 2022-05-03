@@ -19,10 +19,7 @@ const Carousel: FC = () => {
   });
 
   useEffect(() => {
-    setWidth(
-      Number(carousel?.current?.scrollWidth) -
-        Number(carousel?.current?.offsetWidth)
-    );
+    setWidth(Number(carousel.current?.scrollWidth) + 700);
   }, []);
 
   return (
