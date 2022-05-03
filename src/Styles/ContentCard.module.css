@@ -105,3 +105,27 @@
     font-size: 18px;
   }
 }
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    width: clamp(260px, 20.5vw, 300px);
+    height: 226px;
+    margin-bottom: 2.5rem;
+  }
+
+  .photo-container {
+    height: clamp(160px, 22.6vh, 185px);
+  }
+
+  .details-container {
+    margin-top: 0.6rem;
+  }
+
+  .details {
+    font-size: 13px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+}
