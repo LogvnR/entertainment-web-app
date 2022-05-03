@@ -21,7 +21,7 @@ const Search: FC<Props> = ({ placeholder, isSearching }) => {
       isSearching(false);
       setSearch('');
     }
-  }, [searchValue]);
+  }, [searchValue, isSearching, setSearch]);
 
   return (
     <div className={classes.container}>
