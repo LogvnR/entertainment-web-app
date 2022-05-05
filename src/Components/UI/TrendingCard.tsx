@@ -9,6 +9,7 @@ import { ReactComponent as EmptyBookmarkIcon } from '../../assets/icon-bookmark-
 import { ReactComponent as FullBookmarkIcon } from '../../assets/icon-bookmark-full.svg';
 import { ReactComponent as MovieIcon } from '../../assets/icon-category-movie.svg';
 import { ReactComponent as TvSeriesIcon } from '../../assets/icon-category-tv.svg';
+import { ReactComponent as Play } from '../../assets/icon-play.svg';
 
 interface Props {
   className: string;
@@ -74,6 +75,12 @@ const TrendingCard: FC<Props> = ({
 
   return (
     <motion.div className={`${classes.container} ${className}`}>
+      <div className={classes['play-container']}>
+        <div className={classes.play}>
+          <Play />
+          <p>Play</p>
+        </div>
+      </div>
       <div className={classes.info}>
         <div className={classes['bookmark-container']}>
           <motion.div
