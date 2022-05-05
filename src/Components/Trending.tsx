@@ -6,7 +6,7 @@ import Carousel from './UI/Carousel';
 const Trending: FC = () => {
   return (
     <div className={classes.container}>
-      <h2 className={classes.title}>Trending</h2>
+      <h1 className={classes.title}>Trending</h1>
       <Carousel />
     </div>
   );
