@@ -13,6 +13,7 @@ const Search: FC<Props> = ({ placeholder, isSearching }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const { setSearch } = useStore();
 
+  // Determines whether the search bar is active and uses "isSearching" in parent component to show and hide display
   useEffect(() => {
     if (searchValue) {
       isSearching(true);

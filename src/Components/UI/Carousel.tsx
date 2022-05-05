@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, FC } from 'react';
 import { motion } from 'framer-motion';
+
 import useStore from '../../Helpers/store';
 import { Content } from '../../Helpers/types';
 
@@ -19,6 +20,7 @@ const Carousel: FC = () => {
   });
 
   useEffect(() => {
+    // Responsible for determining the carousel end width
     setWidth(Number(carousel.current?.scrollWidth) + 700);
   }, []);
 

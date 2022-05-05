@@ -41,12 +41,15 @@ const ContentCard: FC<Props> = ({
   const { content, updateContent, screenWidth } = useStore();
 
   const updateBookmarks = () => {
+    // Finds the index of the object with a matching title
     const objIndex = content.findIndex((obj) => obj.title === title);
+    // Toggles bookmarked state
     if (clickedBookmarked) {
       content[objIndex].isBookmarked = false;
     } else {
       content[objIndex].isBookmarked = true;
     }
+    //Updates main data Array
     updateContent(content);
   };
 
@@ -55,6 +58,7 @@ const ContentCard: FC<Props> = ({
     updateBookmarks();
   };
 
+  // Updates thumbnail image based on Screen Size
   useEffect(() => {
     if (screenWidth < 768) {
       setThumbnailPhoto(thumbnail.regular.small);

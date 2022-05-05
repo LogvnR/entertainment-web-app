@@ -12,32 +12,27 @@ interface AppStore {
 }
 
 const useStore = create<AppStore>((set) => ({
-  // ==== This is the main group of data the each component draws and filters from. Updating this will change the content in each component
-  content: [],
-  // ==== This is ran on page load to populate each component with the same pool on data
-  setContent: (data: Content) =>
+  content: [], // The main data the each component draws and filters from. Updating this will update each component
+  setContent: (
+    data: Content // Ran on page load to populate each component with the correct data
+  ) =>
     set((state) => {
       return {
         content: [...state.content, data],
       };
     }),
-  // ==== Responsible for updating the main 'content' array when a new bookmark is added
-  updateContent: (update: Content[]) =>
+  updateContent: (
+    update: Content[] // Updates the main 'content' array when a new bookmark is added
+  ) =>
     set((state) => {
       return {
         content: update,
       };
     }),
-  // ==== This controls the users search term to compare against the main content array to filter results of the search
-  search: '',
-  // ==== This holds all of the search results to be displayed
-  searchResults: [],
-  // ==== This is what populates 'search' when a use types in the input
-  setSearch: (search: string) => set({ search }),
-  // ==== Base number for screen width that components like the ContentCards or the Navbar use to know what the size of the display is so they can change accordingly
-  screenWidth: 0,
-  // ==== This is ran whenever the display size changes
-  setScreenWidth: (screenWidth: number) => set({ screenWidth }),
+  search: '', // Controls the users search term to compare against the main content array & filter results of the search
+  setSearch: (search: string) => set({ search }), // This is what populates 'search' when a use types in the input
+  screenWidth: 0, // Screen width so components know what the size of the display is so they can change accordingly
+  setScreenWidth: (screenWidth: number) => set({ screenWidth }), // This is ran whenever the display size changes
 }));
 
 export default useStore;

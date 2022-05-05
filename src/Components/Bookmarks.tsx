@@ -29,6 +29,7 @@ const Bookmarks: FC = () => {
     return false;
   });
 
+  // A complete list of bookmarked movies and shows to send to SearchResults to search through
   const fullBookmarks = bookmarkedMovies.concat(bookmarkedShows);
 
   return (
